@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const exec = mongoose.Query.prototype.exec;
 const redis = require("redis");
 const util = require("util");
-const client = redis.createClient("redis://127.0.0.1:6379");
+const keys = require("../config/keys");
+const client = redis.createClient(keys.redisUrl);
 
 mongoose.Query.prototype.cache = function(options = {}){
     this._cache = true;
